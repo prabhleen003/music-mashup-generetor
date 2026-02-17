@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MUZ-MASH - Mashup Generator</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="logo">MUZ-MASH 🎵</h2>
+<p class="tagline">Create Your Ultimate Mashup</p>
+
+    <form id="mashupForm">
+
+        <div class="form-group">
+            <label>Singer Name</label>
+            <input type="text" name="singer" required>
+        </div>
+
+        <div class="form-group">
+            <label>Number of Videos</label>
+            <input type="number" name="videos" required>
+        </div>
+
+        <div class="form-group">
+            <label>Duration (seconds)</label>
+            <input type="number" name="duration" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <button type="submit" id="submitBtn">
+            Generate & Send 🚀
+        </button>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Generating your mashup... 🎧</p>
+            <p>This may take a few minutes. It will be sent to your Gmail shortly.</p>
+        </div>
+
+        <!-- Success -->
+        <div class="success" id="success"></div>
+
+        <!-- Error -->
+        <div class="error" id="error"></div>
+        
+    </form>
+   
+</div>
+
+<script>
+document.getElementById("mashupForm").addEventListener("submit", async function(e) {
+
+    e.preventDefault(); // 🚫 prevent page reload
+
+    const formData = new FormData(this);
+
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("submitBtn").innerText = "Processing...";
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("success").innerText = "";
+    document.getElementById("error").innerText = "";
+
+    try {
+        const response = await fetch("/", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.text();
+
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("submitBtn").disabled = false;
+        document.getElementById("submitBtn").innerText = "Generate & Send 🚀";
+
+        if (response.ok) {
+            document.getElementById("success").innerText = result;
+        } else {
+            document.getElementById("error").innerText = result;
+        }
+
+    } catch (err) {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("error").innerText = "Something went wrong: " + err.message;
+        document.getElementById("submitBtn").disabled = false;
+        document.getElementById("submitBtn").innerText = "Generate & Send 🚀";
+    }
+});
+</script>
+
+</body>
+</html>
