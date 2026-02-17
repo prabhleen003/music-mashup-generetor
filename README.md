@@ -7,7 +7,7 @@ This project demonstrates backend automation, audio processing, file handling, e
 ---
 ## 🖼 UI Preview
 
-![UI Preview](static/ui.png)
+![UI Preview](static/UI.png)
 
 ## ✨ Features
 
