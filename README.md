@@ -5,7 +5,9 @@ Musicon is a Flask-based web application that generates custom audio mashups and
 This project demonstrates backend automation, audio processing, file handling, email integration, and cloud deployment.
 
 ---
+## 🖼 UI Preview
 
+![UI Preview](static/ui.png)
 
 ## ✨ Features
 
