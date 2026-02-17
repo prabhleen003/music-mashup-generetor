@@ -1,0 +1,6 @@
+venv/
+videos/
+audios/
+*.mp3
+*.zip
+.env
