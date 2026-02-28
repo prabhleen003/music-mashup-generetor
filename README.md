@@ -107,10 +107,3 @@ This project demonstrates:
 - Git and GitHub workflow
 - Cloud deployment using Render
 
----
-
-## 👩‍💻 Author
-
-**Himani Mahajan**
-
----
